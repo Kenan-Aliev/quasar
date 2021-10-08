@@ -1,0 +1,94 @@
+.phoneImg{
+  width: 130px;
+  height: 120px;
+}
+.phoneDiv{
+
+}
+
+.title {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  &__oneStep {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 45px;
+    color: #262626;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  &__6thCode{
+    font-size: 14px;
+    line-height: 18px;
+    color: #262626;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    width: 292px;
+    margin: 0 auto;
+  }
+}
+.input6thDiv{
+  margin-top: 13px;
+}
+.input6th{
+  width: 258px;
+  height: 36px;
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.input6th{
+  outline:none
+
+}
+.input6th::placeholder{
+  transform: translateX(5px);
+}
+
+
+.btnConfirm{
+  height: 30px;
+  width: 74%;
+  //margin: 0 auto;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnConfirm button {
+  background-color: #0095f6;
+  border: 1px solid #0095f6;
+  border-radius: 3px;
+  color: white;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  height: 100%;
+  width: 100%;
+}
+.btnChangeInquiry{
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 400;
+  margin-top: 30px;
+}
+.routerChange{
+  color: #0095f6;
+  text-decoration: none;
+
+}
+.routerInquiry{
+  color: #0095f6;
+  text-decoration: none;
+}
+
+.generalConfirmDiv {
+  height: 390px;
+  border: 1px solid #dbdbdb;
+  background-color: white;
+}
+.otsConfirmDiv{
+  height: 10px;
+  background-color: rgba(var(--b3f,250,250,250),1);
+}
