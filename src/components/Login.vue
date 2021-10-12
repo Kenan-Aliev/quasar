@@ -3,14 +3,14 @@
     <div class="login">
       <h1 class="login__title">Instagram</h1>
       <div class="login__email">
-        <input type="text" placeholder="Телефон, имя пользователя или эл.адрес">
+        <input v-model="email" type="text" placeholder="Телефон, имя пользователя или эл.адрес">
       </div>
       <div class="login__password">
-        <input type="password" id="password-input" placeholder="Введите пароль" name="password">
+        <input type="password" v-model="password" id="password-input" placeholder="Введите пароль" name="password">
 
       </div>
       <div class="login__btn">
-        <button>Войти</button>
+        <button v-on:click="login">Войти</button>
       </div>
       <div class="twoLineDiv">
         <div class="lineFirst"></div>
@@ -49,15 +49,47 @@
       </div>
     </div>
   </div>
-
 </template>
 
 
 <script>
   import {defineComponent} from 'vue'
+  import axios from 'axios'
 
   export default defineComponent({
-    name: 'Login'
+    name: 'Login',
+    data() {
+      return {
+        email: '',
+        password: ''
+      }
+    },
+    props: ['loginSuccess'],
+    methods: {
+      login() {
+        axios({
+          method: 'post',
+          url: 'https://simp-o-gram.herokuapp.com/auth/login',
+          headers: {
+            'api-token': '8e4b2ed13bfbf65e54561bc45e65f388636041b4b33ea6c89072dbdd45fd9272'
+          },
+          data: {
+            "username": this.email,
+            "password": this.password
+          }
+        }).then((result) => {
+          console.log('Login Success', result)
+          this.loginSuccess = true
+        })
+          .catch((error) => {
+            console.log(error)
+          })
+      },
+
+    },
+    mounted() {
+      console.log(this.props[0])
+    }
 
   })
 </script>

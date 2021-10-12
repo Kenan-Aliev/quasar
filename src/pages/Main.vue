@@ -1,5 +1,6 @@
 <template>
-  <div class="main">
+  <Login v-if='!loginSuccess' v-bind:loginSuccess='loginSuccess'/>
+  <div class="main" v-else>
     <div class="main__header">
       <h1 class="main__header-title">Instagram</h1>
       <div class="main__header-input">
@@ -35,9 +36,18 @@
 
 <script>
   import {defineComponent} from 'vue'
+  import Login from '../components/Login'
 
   export default defineComponent({
-    name: 'Main'
+    name: 'Main',
+    components: {
+      Login
+    },
+    data() {
+      return {
+        loginSuccess: false
+      }
+    }
   })
 
 
