@@ -1,5 +1,9 @@
 <template>
-  <Login v-if='!loginSuccess' v-bind:loginSuccess='loginSuccess'/>
+  <Login
+    v-if='!loginSuccess'
+    :loginSuccess='loginSuccess'
+    @loginSuccess="changeLoginStatus"
+  />
   <div class="main" v-else>
     <div class="main__header">
       <h1 class="main__header-title">Instagram</h1>
@@ -33,7 +37,6 @@
   </div>
 </template>
 
-
 <script>
   import {defineComponent} from 'vue'
   import Login from '../components/Login'
@@ -46,6 +49,11 @@
     data() {
       return {
         loginSuccess: false
+      }
+    },
+    methods:{
+      changeLoginStatus (value) {
+        this.loginSuccess = value
       }
     }
   })

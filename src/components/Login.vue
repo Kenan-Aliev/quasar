@@ -12,6 +12,12 @@
       <div class="login__btn">
         <button v-on:click="login">Войти</button>
       </div>
+      <div v-if="isLoading">
+        <q-spinner
+        color="primary"
+        size="3em"
+      />
+      </div>
       <div class="twoLineDiv">
         <div class="lineFirst"></div>
         <div class="lineText">ИЛИ</div>
@@ -61,12 +67,14 @@
     data() {
       return {
         email: '',
-        password: ''
+        password: '',
+        isLoading: false
       }
     },
     props: ['loginSuccess'],
     methods: {
       login() {
+        this.isLoading = true
         axios({
           method: 'post',
           url: 'https://simp-o-gram.herokuapp.com/auth/login',
@@ -79,16 +87,18 @@
           }
         }).then((result) => {
           console.log('Login Success', result)
-          this.loginSuccess = true
-        })
-          .catch((error) => {
+          this.$emit('loginSuccess', true)
+        }).catch((error) => {
             console.log(error)
           })
+        .finally(() => {
+          this.isLoading = false
+        })
       },
 
     },
     mounted() {
-      console.log(this.props[0])
+      //console.log(this.props[0])
     }
 
   })
