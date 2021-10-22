@@ -13,9 +13,11 @@ const routes = [
       {path:'', component: () => import('../components/Login')},
       {path:'registration', component: () => import('../components/Registration')},
     ]
-
   },
-
+  {
+    path: '/example',
+    component: () => import('../pages/Example')
+  },
 
   // Always leave this as last one,
   // but you can also remove it

@@ -1,9 +1,6 @@
 <template>
 
   <div class="registration">
-    <!--    <div class="registration2">-->
-    <!--      -->
-    <!--    </div>-->
     <div v-if="step ===`registration`" class="registration-wrapper">
       <div class="genRegistration">
         <div class="registration">
@@ -55,7 +52,6 @@
     <div v-if="step === `birthday`">
       <BirthdayComponent/>
     </div>
-
   </div>
 
 </template>
@@ -66,6 +62,7 @@
   import BirthdayComponent from "../components/birthdayComponent";
   import validate from 'validate.js';
   import validateModels from '../utils/index'
+  import axios from 'axios'
 
   export default defineComponent({
     name: 'RegistrationComponent',
@@ -110,17 +107,6 @@
       }
     },
     methods: {
-      // ChangeComponent() {
-      //   if (this.userInputsModel.userLogin !== '' && this.userInputsModel.password !== '') {
-      //     localStorage.setItem('userLogin', this.userInputsModel.userLogin)
-      //     localStorage.setItem('FIO', this.userInputsModel.FIO)
-      //     localStorage.setItem('name', this.userInputsModel.name)
-      //     localStorage.setItem('password', this.userInputsModel.password)
-      //     this.step = 'birthday'
-      //   } else {
-      //     console.log(`ERROR: поля логин и пароль объязательны!`)
-      //   }
-      // },
       register () {
         const modelInputs = {
           userLogin: this.userInputsModel.userLogin,
@@ -136,9 +122,45 @@
           )
         }
         else{
-          this.step = 'birthday'
+          axios({
+            method: 'post',
+            url: 'https://simp-o-gram.herokuapp.com/auth/register',
+            headers: {
+              'api-token': '8e4b2ed13bfbf65e54561bc45e65f388636041b4b33ea6c89072dbdd45fd9272'
+            },
+            data: {
+              "username": this.userInputsModel.userLogin,
+              "password": this.userInputsModel.password,
+              "firstname": this.userInputsModel.FIO,
+              "lastname": "",
+              "email":this.userInputsModel.userLogin,
+            }
+          }).then(() => {
+            this.step = 'birthday'
+          }).catch((error) => {
+            console.log('REGISTRATION ERROR', error)
+          })
+          // localStorage.setItem('userLogin', this.userInputsModel.userLogin)
+          // localStorage.setItem('FIO', this.userInputsModel.FIO)
+          // localStorage.setItem('name', this.userInputsModel.name)
+          // localStorage.setItem('password', this.userInputsModel.password)
+        }
+      },
+      getStorageData () {
+        const userLogin = localStorage.getItem('userLogin');
+        const FIO = localStorage.getItem('FIO');
+        const name = localStorage.getItem('name');
+        const password = localStorage.getItem('password');
+        if (userLogin && FIO && name && password){
+          this.userInputsModel.userLogin = userLogin
+          this.userInputsModel.FIO = FIO
+          this.userInputsModel.name = name
+          this.userInputsModel.password = password
         }
       }
+    },
+    mounted() {
+      //this.getStorageData()
     }
   })
 </script>

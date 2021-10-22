@@ -42,14 +42,10 @@
             <div class="title__oneStep">
               Ещё один шаг
             </div>
-            <div class="title__6thCode">
-              Введите шестизначный код, который мы отправили на номер +996702454585.
-            </div>
-
+            <div class="title__6thCode">{{getUserLogin}}</div>
           </div>
           <div class="input6thDiv">
             <input  class="input6th" placeholder="######" type="text">
-
           </div>
 
           <div class="btnConfirm">
@@ -97,12 +93,19 @@ export default defineComponent(
   {
     name: "ConfirmPhoneNumber",
     components: {ChangeComponent},
-
-
-
     data() {
       return {
         step: 'confirm'
+      }
+    },
+    computed: {
+      getUserLogin () {
+        const userLogin = localStorage.getItem('userLogin');
+        if (userLogin.includes('@')) {
+          return `Введите шестизначный код, который мы отправили на почту ${userLogin}.`
+        } else {
+          return `Введите шестизначный код, который мы отправили на номер ${userLogin}.`
+        }
       }
     },
     methods: {

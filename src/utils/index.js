@@ -2,13 +2,13 @@ export default {
   userLogin: {
     presence: true,
     format: {
-      pattern: /^[A-Za-z\d]+$/,
+      pattern: /^[A-Za-z\d@.]+$/,
       message: 'Invalid username!'
     },
     length: {
-      maximum: 12,
+      maximum: 20,
       minimum: 3,
-      message: 'Длина username должно быть больше 3 и меньше 12'
+      message: 'Длина username должно быть больше 3 и меньше 20'
     }
   },
   FIO:{
