@@ -2,7 +2,9 @@
 <div>
   <h2>Props & emit</h2>
   <input type="text" v-model="inputModel">
-  <p>{{inputModel}}</p>
+  <p style="color: #8e8e8e; font-size: 12px">
+    {{textType}}
+  </p>
   <div v-for="(post, ind) in posts" :key="ind" class="q-pa-md" style="width:20%; cursor: pointer" @click="openDialog(ind)">
       {{post.title}}
   </div>
@@ -38,6 +40,7 @@ export default {
       posts: [],
       postInd: null,
       inputModel: '',
+      textType: '',
       obj: {
         name: 'Aidai',
         city: 'Bishkek'
@@ -73,8 +76,12 @@ export default {
   },
   watch: {
     inputModel (newValue, oldValue) {
-      console.log('oldValue', oldValue)
-      console.log('newValue', newValue)
+      if (newValue){
+        this.textType = 'Write...'
+        setTimeout(()=>{
+          this.textType = ''
+        },1200)
+      }
     }
   }
 }

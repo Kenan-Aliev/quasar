@@ -18,6 +18,10 @@ const routes = [
     path: '/example',
     component: () => import('../pages/Example')
   },
+  {
+    path: '/life',
+    component: () => import('../pages/lifeCycle')
+  },
 
   // Always leave this as last one,
   // but you can also remove it
